@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div id="loginform" class="pusher">
+     {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}	
+  <p>Fill in your username and password to log in:</p>
+  {% if error %}<p class=error><strong>{{ error }}</strong></p> {% endif %}
+  <form action="{{ url_for('login') }}" method=post>
+  {{ form.username.label }}: {{ form.username() }} <br/>
+  {{ form.password.label }}: {{ form.password() }} <br/>
+   <input type=submit value=Login id="submitbutton_login">
+  </form>
+
+  </div>
+{% endblock %}

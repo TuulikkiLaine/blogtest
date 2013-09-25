@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="entries pusher">			
+				<div class="entrydate">{{entry.pub_date}}</div>	
+					<h2 class="entryheadline">{{entry.title}}</h2>
+					<div class="entrytext">{{entry.body}}</div>
+					<ul class="taglist">
+					{% for tag in entry.taglist%}
+						<li class="tag">{{tag.name}}</li>
+					{%endfor%}	
+					</ul>
+					<div class="floatclearer"></div>
+		</div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+  	<div id="admincontainer" class="pusher">
+   {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}	
+  	<div id="add_new_entry">Add New Entry</div>
+	<div class="logout"><a href="{{ url_for('logout')}}">Log out</a></div>
+	<div id="post_entry_form">
+		<form action="{{ url_for('add_entry') }}" method=post >
+		 {{ form1.title }} <br/>
+		 {{ form1.body }} <br/>
+		Tags (separate by comma): {{form1.tags}} <br/>
+      <input type=submit value=Submit class="submit_entry">
+		</form>
+   </div> 
+      <div class="floatclearer"></div>
+   <div id="entrylist_admin">
+   <h2 class="admin_h">Edit or delete entries:</h2>
+   <ul class="entrylist_admin">
+   	{% for object in entries %}
+   	<li>{{object.entry.pub_date}} {{object.entry.title}} <span class="edit">Edit</span> 
+   	<span class="delete open_delete">Delete</span>
+   	   <div class="edit_entry_form">
+   		<form action="{{ url_for('edit_entry')}}" method=post >
+		 {{ object.form.title }} <br/>
+		 {{ object.form.body }} <br/>
+		Tags (separate by comma): {{object.form.tags}} <br/>
+		{{ object.form.entry_id }} <br/>
+      <input type=submit value=Submit class="submit_entry">
+		</form>
+		</div>
+		<div class="are_you_sure">
+   <h2>Are you sure?</h2>
+   <p>This can not be undone.</p>
+ <a href="{{url_for('delete_entry')}}?id={{object.entry.id}}">
+   	<span class="delete">Yes</span></a>  
+   	<span class="delete close_delete">No</span>
+   </div>		
+	</li>	
+	{%endfor%}
+	</ul>	
+   </div>
+   <div id="taglist_admin">
+   <h2 class="admin_h">Edit or delete tags:</h2>
+   <ul class="taglist_admin">
+    	{% for object in tags %}
+   	<li>{{object.tag.name}} <span class="edit">Edit</span> 
+   	<span class="delete open_delete">Delete</span>
+   	   <div class="edit_entry_form">
+   		<form action="{{ url_for('edit_tag')}}" method=post >
+		 {{ object.form.name }}
+		{{ object.form.tag_id }} 
+      <input type=submit value=Submit class="submit_tag">
+		</form>
+		</div>
+	<div class="are_you_sure">
+   <h2>Are you sure?</h2>
+   <p>This can not be undone.</p>
+ <a href="{{url_for('delete_tag')}}?id={{object.tag.id}}">
+   	<span class="delete">Yes</span></a>  
+   	<span class="delete close_delete">No</span>
+   </div>		
+	</li>	
+
+	{%endfor%}
+	</ul>
+   </div>
+   </div>
+   
+   {% else %} 
+   <div id="not_logged_in" class="pusher">
+   <p>You are not logged in</p>
+   <a href="{{ url_for('login')}}">Log in</a>
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,431 @@
+/*By Tuulikki Laine 2013*/
+
+* 
+{
+margin:0;
+padding:0;
+} 
+
+body
+{
+font-family: 'Istok Web', sans-serif;
+background:#ebd6ba;
+}
+
+a
+{
+color:#000;
+}
+
+#mainwrapper
+{
+width:100%;
+min-width:1000px;
+} 
+
+#header
+{
+width:100%;
+}
+
+#header img
+{
+width:250px;
+padding:50px;
+}
+
+#header h1
+{
+font-family: 'Shojumaru', cursive;
+font-size:72px;
+display:inline;
+position:absolute;
+top:80px;
+margin-left:30px;
+}
+
+#searchwrapper
+{
+position:absolute;
+top: 50px;
+right: 50px;
+}
+
+#searchwrapper label
+{
+font-family: 'Shojumaru', cursive;
+}
+
+.submit_search
+{
+padding:5px;
+}
+
+
+.entries
+{
+width:55%;
+float:left;
+margin-left:100px;
+margin-right:25px;
+}
+
+.entry
+{
+list-style-type:none;
+margin-bottom:20px;
+}
+
+.entry a
+{
+text-decoration:none;
+color:#000;
+}
+
+.entrydate
+{
+font-size:12px;
+color:#4c4c4c;
+}
+
+.taglist
+{
+margin:0;
+padding:0;
+}
+
+.tag
+{
+list-style-type:none;
+float:left;
+margin:10px 10px 10px 0;
+background: #756b5d;
+color:#FFF;
+padding:5px;
+}
+
+.viewfull
+{
+padding:10px 0 10px 0;
+}
+
+.viewfull a
+{
+color:#000;
+text-decoration:underline;
+}
+
+.pagination_link
+{
+font-size:20px;
+color:#000;
+}
+
+#navi
+{
+width:25%;
+float:right;
+background:#756b5d; /*for IE<9*/
+background:rgba(0,0,0,0.5);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+margin-right:50px;
+}
+
+
+.navi_year
+{
+list-style-type:none;
+color:#FFF;
+margin:25px 0px 0px 50px;
+font-size: 22px;
+}
+
+.navi_month
+{
+list-style-type:none;
+font-family: 'Shojumaru', cursive;
+font-size:28px;
+color:#FFF;
+cursor:pointer;
+cursor:hand;
+margin:10px 30px 20px 0px;
+}
+
+.navi_datelist
+{
+display:none;
+margin-left:20px;
+}
+
+.navi_date
+{
+list-style-type:none;
+font-family: 'Istok Web', sans-serif;
+font-size:16px;
+margin-top:20px;
+}
+
+.navi_datelist a
+{
+text-decoration:none;
+color:#FFF;
+}
+
+.floatclearer
+{
+clear:both;
+}
+
+#footer
+{
+width:100%;
+background:#7d694e;
+position:relative;
+}
+
+
+#created_by
+{
+color:#FFF;
+font-size:12px;
+padding:20px;
+}
+
+#loginform
+{
+font-size:18px;
+width:400px;
+margin-left:100px;
+float:left;
+}
+
+#loginform input
+{
+margin-top:10px;
+margin-bottom:10px;
+}
+
+#submitbutton_login
+{
+width:100px;
+font-size:20px;
+padding:10px;
+margin-top:20px;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+background:#756b5d;
+color:#e9e9e9;
+cursor:pointer;
+cursor:hand;
+}
+
+.error
+{
+color:red;
+font-size:16px;
+}
+
+.flash
+{
+font-style:italic;
+font-size:18px;
+padding-bottom:20px;
+}
+
+#admincontainer
+{
+float:left;
+width:60%;
+margin-left:100px;
+}
+
+.logout, #add_new_entry
+{
+background:#756b5d;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+padding:10px;
+font-size:20px;
+width:100px;
+text-align:center;
+display:inline-block;
+}
+
+.logout a
+{
+text-decoration:none;
+color:#e9e9e9;
+cursor:pointer;
+cursor:hand;
+}
+
+#add_new_entry
+{
+margin-right:20px;
+color:#e9e9e9;
+width:150px;
+cursor:pointer;
+cursor:hand;
+}
+
+#post_entry_form, .edit_entry_form 
+{
+display:none;
+}
+
+#post_entry_form textarea, .edit_entry_form textarea
+{
+width:500px;
+height:600px;
+}
+
+#post_entry_form #title, .edit_entry_form #title, .edit_entry_form #name
+{
+margin:10px 0 10px 0;
+}
+
+#post_entry_form #tags, .edit_entry_form #tags
+{
+width:295px;
+}
+
+.submit_entry
+{
+margin: 10px 0 10px 0;
+background:#756b5d;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+padding:10px;
+font-size:20px;
+width:100px;
+text-align:center;
+color:#e9e9e9;
+cursor:pointer;
+cursor:hand;
+}
+
+.submit_tag
+{
+display:inline;
+background:#756b5d;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+padding:10px;
+width:70px;
+text-align:center;
+color:#e9e9e9;
+margin-left:10px;
+cursor:pointer;
+cursor:hand;
+}
+
+.admin_h
+{
+margin: 20px 0 20px 0;	
+}
+
+.entrylist_admin li, .taglist_admin li
+{
+list-style-type:none;
+margin: 20px 0 20px 0;	
+}
+
+.edit, .delete
+{
+margin: 10px 0 10px 10px;
+background:#756b5d;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+padding:5px;
+font-size:16px;
+text-align:center;
+color:#e9e9e9;
+cursor:pointer;
+cursor:hand;
+}
+
+#entrylist_admin a, #taglist_admin a
+{
+text-decoration:none;	
+}
+
+#taglist_admin, #entrylist_admin
+{
+float:left;
+}
+
+#taglist_admin
+{
+margin-left:10%;
+}
+
+.are_you_sure
+{
+display:none;
+position:fixed;
+top:200px;
+left:40%;
+width:250px;
+height:150px;
+background:#FFF;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+border:2px solid red;
+text-align:center;
+}
+
+.are_you_sure a
+{
+padding:10px;
+text-decoration:none;
+}
+
+.are_you_sure p
+{
+padding:10px 0 20px 0;
+}
+
+.are_you_sure h2
+{
+padding:10px 0 0 0;
+}
+
+.are_you_sure span
+{
+padding-left:20px;
+padding-right:20px;
+margin: 0 0 0 0;
+}
+
+#not_logged_in
+{
+margin-left:100px;
+float:left;
+width:60%;
+}
+
+.searchresult_headline
+{
+font-size:18px;
+padding-bottom:10px;
+font-weight:bold;
+}
+
+.errorpage
+{
+width:50%;
+float:left;
+}
+
+.errorpage h2
+{
+margin-left:50px;
+}
