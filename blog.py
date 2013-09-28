@@ -59,7 +59,7 @@ class Tag(db.Model):
 		return '<Tag %r>' %self.name
 
 
-app.config['WHOOSH_BASE'] = DATABASE
+app.config['WHOOSH_BASE'] = os.environ['DATABASE_URL']
 
 whooshalchemy.whoosh_index(app, Entry)		
 
