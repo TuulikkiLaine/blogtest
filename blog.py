@@ -17,7 +17,7 @@ from string import replace
 import flask_ext_whooshalchemy_fixed as whooshalchemy
 
 
-#DATABASE = 'postgresql://monkeyblog:monkey12345@localhost/monkeyblogdatabase'
+os.environ['DATABASE_URL'] = 'postgresql://monkeyblog:monkey12345@localhost/monkeyblogdatabase'
 DATABASE = os.environ['$DATABASE_URL']
 DEBUG = True
 SECRET_KEY = 'vfaw)iul6d2@0b85$zy-^kdbd3i-7=ww_vtf%k9'
