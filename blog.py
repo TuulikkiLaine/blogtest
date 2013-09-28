@@ -16,9 +16,6 @@ from string import replace
 
 import flask_ext_whooshalchemy_fixed as whooshalchemy
 
-
-os.environ['DATABASE_URL'] = 'postgresql://monkeyblog:monkey12345@localhost/monkeyblogdatabase'
-DATABASE = os.environ['DATABASE_URL']
 DEBUG = False
 SECRET_KEY = 'vfaw)iul6d2@0b85$zy-^kdbd3i-7=ww_vtf%k9'
 USERNAME = 'admin'
@@ -28,7 +25,7 @@ app = Flask(__name__)
 
 app.config.from_object(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 db = SQLAlchemy(app)
 
