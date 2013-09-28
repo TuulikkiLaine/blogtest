@@ -30,7 +30,6 @@ pycups==1.9.61
 pycurl==7.19.0
 pyparsing==1.5.2
 pysmbc==1.0.13
-python-apt==0.8.3ubuntu7
 python-dateutil==1.5
 python-debian==0.1.21ubuntu1
 pytz==2011k
