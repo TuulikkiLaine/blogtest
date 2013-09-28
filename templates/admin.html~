@@ -34,7 +34,7 @@
 		<div class="are_you_sure">
    <h2>Are you sure?</h2>
    <p>This can not be undone.</p>
- <a href="{{url_for('delete_tag')}}?id={{object.entry.id}}">
+ <a href="{{url_for('delete_entry')}}?id={{object.entry.id}}">
    	<span class="delete">Yes</span></a>  
    	<span class="delete close_delete">No</span>
    </div>		

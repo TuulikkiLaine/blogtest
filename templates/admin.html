@@ -10,6 +10,7 @@
 	<div id="post_entry_form">
 		<form action="{{ url_for('add_entry') }}" method=post >
 		 {{ form1.title }} <br/>
+		 <p>You can use html formatting like b- and i -tags.</p>
 		 {{ form1.body }} <br/>
 		Tags (separate by comma): {{form1.tags}} <br/>
       <input type=submit value=Submit class="submit_entry">
