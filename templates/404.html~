@@ -1,9 +1,0 @@
-{% extends "layout.html" %}
-{% block body %}
-<div class="pusher errorpage"> 
-
-<p>Sorry, nothing here :(</p>
-			
-</div>
-
-{% endblock %}
