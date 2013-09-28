@@ -19,7 +19,7 @@ import flask_ext_whooshalchemy_fixed as whooshalchemy
 
 os.environ['DATABASE_URL'] = 'postgresql://monkeyblog:monkey12345@localhost/monkeyblogdatabase'
 DATABASE = os.environ['DATABASE_URL']
-DEBUG = True
+DEBUG = False
 SECRET_KEY = 'vfaw)iul6d2@0b85$zy-^kdbd3i-7=ww_vtf%k9'
 USERNAME = 'admin'
 PASSWORD = 'default'
