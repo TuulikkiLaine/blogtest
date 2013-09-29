@@ -6,7 +6,7 @@
 				{% for entry in entries %}
 				<li class="entry">
 					<div class="entrydate">{{entry.pub_date}}</div>
-					<a href="{{ url_for('show_single_entry',title=entry.title) }}"><h2 class="entryheadline">{{entry.title|safe}}</h2></a>
+					<a href="{{ url_for('show_single_entry',title=entry.title) }}"><h2 class="entryheadline">{{entry.title}}</h2></a>
 					<div class="entrytext">{{entry.body[:500]|safe}}</div>
 					<div class="viewfull"><a href="{{ url_for('show_single_entry',title=entry.title) }}">View full post</a></div>
 					<ul class="taglist">
