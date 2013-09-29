@@ -6,15 +6,11 @@ from flask.ext.login import LoginManager
 
 from wtforms import Form, TextField, TextAreaField, PasswordField, validators, HiddenField
 
-#from flask_wtf import Form
-
 from flask_sqlalchemy import SQLAlchemy
 
 import datetime
 
 from string import replace, lower
-
-import flask_ext_whooshalchemy_fixed as whooshalchemy
 
 import re
 
@@ -35,7 +31,6 @@ db = SQLAlchemy(app)
 tags = db.Table('tags',db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),db.Column('entry_id', db.Integer, db.ForeignKey('entry.id')))
 
 class Entry(db.Model):
-	__searchable__ = ['body','title']	
 	
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(80))
@@ -58,12 +53,7 @@ class Tag(db.Model):
 	def __init__(self,name):
 		self.name = name
 	def __repr__(self):
-		return '<Tag %r>' %self.name
-
-
-app.config['WHOOSH_BASE'] = os.environ['DATABASE_URL']
-
-whooshalchemy.whoosh_index(app, Entry)		
+		return '<Tag %r>' %self.name	
 
 def tune_month(number):
 	if number == '01': return 'January'
@@ -298,8 +288,17 @@ def search():
 	form = SearchForm(request.form)
 	if form.validate():
 		query = form.search.data.lower()
-		#->lowercase to make whoosh do case-insensitive search		
-		entries = Entry.query.whoosh_search('*'+query+'*').all()
+		#entries = Entry.query.whoosh_search('*'+query+'*').all()		
+		entries = Entry.query.filter(Entry.title.ilike('%'+query+'%')).all()
+		entries += Entry.query.filter(Entry.body.ilike('%'+query+'%')).all()
+		entries = sorted(set(entries),key=lambda x:x.pub_date)		
+		for entry in entries:
+			search_terms = re.findall(r'(?i)'+query, entry.title)
+			search_terms2 = re.findall(r'(?i)'+query, entry.body)
+			for i in set(search_terms):
+				entry.title = entry.title.replace(i,'<span style="color:red;">'+i+'</span>')
+			for j in set(search_terms2):
+				entry.body = entry.body.replace(j,'<span style="color:red;font-weight:bold;">'+j+'</span>')			
 		navi = get_navi()
 		searchform = SearchForm()
 		return render_template('searchresult.html', entries=entries, navi=navi, search=searchform)
