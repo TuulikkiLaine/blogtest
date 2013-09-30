@@ -32,9 +32,7 @@ tags = db.Table('tags',db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
 
 
 class Entry(db.Model):	
-	"""
-	Blogposts
-	"""
+	#Blogposts
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(80))
 	body = db.Column(db.Text)
@@ -76,9 +74,7 @@ def tune_month(number):
 
 
 def get_navi():
-	"""
-	Output: a sorted list of dictionaries containing all the relevant info for navigation building
-	"""
+	#Output: a sorted list of dictionaries containing all the relevant info for navigation building
 	list_of_content = []
 	for entry in Entry.query.all():
 		list_of_content.append({
