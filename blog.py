@@ -295,7 +295,7 @@ def search():
 			search_terms = re.findall(r'(?i)'+query, entry.title)
 			search_terms2 = re.findall(r'(?i)'+query, entry.body)
 			for i in set(search_terms):
-				entry.title = entry.title.replace(i,'<span style="color:red;">'+i+'</span>')
+				entry.newtitle = entry.title.replace(i,'<span style="color:red;">'+i+'</span>')
 			for j in set(search_terms2):
 				entry.body = entry.body.replace(j,'<span style="color:red;font-weight:bold;">'+j+'</span>')			
 		navi = get_navi()
