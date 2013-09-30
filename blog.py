@@ -27,11 +27,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 db = SQLAlchemy(app)
 
-#relation table
+#relation table to link entries and tags
 tags = db.Table('tags',db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),db.Column('entry_id', db.Integer, db.ForeignKey('entry.id')))
 
-class Entry(db.Model):
-	
+#Blogposts
+class Entry(db.Model):	
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(80))
 	body = db.Column(db.Text)
@@ -46,7 +46,8 @@ class Entry(db.Model):
 		self.taglist = taglist
 	def __repr__(self):
 		return '<Entry %r>' % self.title
-		
+
+#Tags		
 class Tag(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(80))
@@ -55,6 +56,7 @@ class Tag(db.Model):
 	def __repr__(self):
 		return '<Tag %r>' %self.name	
 
+#This function is to render the months in navigation in correct mode		
 def tune_month(number):
 	if number == '01': return 'January'
 	if number == '02': return 'February'
@@ -68,7 +70,8 @@ def tune_month(number):
 	if number == '10': return 'October'
 	if number == '11': return 'November'
 	if number == '12': return 'December'	
-	
+
+#Build right-side navigation using nested dictionaries	
 def get_navi():
 	list_of_content = []
 	for entry in Entry.query.all():
@@ -91,7 +94,8 @@ def get_navi():
 		d2 = {'name':year,'months':months}
 		final_list.append(d2)
 	return sorted(final_list,reverse=True)
-	
+
+#Forms	
 class LoginForm(Form):
 	username = TextField('username')
 	password = PasswordField('password')
@@ -200,6 +204,7 @@ def add_entry():
 		comma_sep_to_list = comma_sep.split(',')
 		taglist = []
 		for tag in comma_sep_to_list:
+		#Iterate through added tags and check if the tag already exists in the database			
 			if len(list(Tag.query.filter_by(name=tag))) != 0 :
 				for item in Tag.query.filter_by(name=tag):
 					taglist.append(item)
@@ -292,13 +297,15 @@ def search():
 		entries += Entry.query.filter(Entry.body.ilike('%'+query+'%')).all()
 		entries = sorted(set(entries),key=lambda x:x.pub_date)		
 		for entry in entries:
-			entry.link = entry.title			
+			entry.link = entry.title	
+			#Store the original title in entry.link variable to not break the functionality of the link
 			search_terms = re.findall(r'(?i)'+query, entry.title)
 			search_terms2 = re.findall(r'(?i)'+query, entry.body)
 			for i in set(search_terms):
 				entry.title = entry.title.replace(i,'<span style="color:red;">'+i+'</span>')
 			for j in set(search_terms2):
-				entry.body = entry.body.replace(j,'<span style="color:red;font-weight:bold;">'+j+'</span>')			
+				entry.body = entry.body.replace(j,'<span style="color:red;font-weight:bold;">'+j+'</span>')		
+			#Highlight the keyword in search result			
 		navi = get_navi()
 		searchform = SearchForm()
 		return render_template('searchresult.html', entries=entries, navi=navi, search=searchform)
