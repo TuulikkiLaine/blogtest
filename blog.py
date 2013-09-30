@@ -297,13 +297,15 @@ def search():
 		entries += Entry.query.filter(Entry.body.ilike('%'+query+'%')).all()
 		entries = sorted(set(entries),key=lambda x:x.pub_date)		
 		for entry in entries:
+			#Store the original title in entry.link variable to not break the functionality of the link
 			entry.link = entry.title			
 			search_terms = re.findall(r'(?i)'+query, entry.title)
 			search_terms2 = re.findall(r'(?i)'+query, entry.body)
 			for i in set(search_terms):
 				entry.title = entry.title.replace(i,'<span style="color:red;">'+i+'</span>')
 			for j in set(search_terms2):
-				entry.body = entry.body.replace(j,'<span style="color:red;font-weight:bold;">'+j+'</span>')			
+				entry.body = entry.body.replace(j,'<span style="color:red;font-weight:bold;">'+j+'</span>')		
+			#Highlight the keyword in search result	
 		navi = get_navi()
 		searchform = SearchForm()
 		return render_template('searchresult.html', entries=entries, navi=navi, search=searchform)
