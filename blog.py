@@ -295,7 +295,7 @@ def search():
 		query = form.search.data.lower()
 		entries = Entry.query.filter(Entry.title.ilike('%'+query+'%')).all()
 		entries += Entry.query.filter(Entry.body.ilike('%'+query+'%')).all()
-		entries = sorted(set(entries),key=lambda x:x.pub_date)		
+		entries = sorted(set(entries),key=lambda x:x.pub_date,reverse=True)		
 		for entry in entries:
 			#Store the original title in entry.link variable to not break the functionality of the link
 			search_terms = re.findall(r'(?i)'+query, entry.title)
