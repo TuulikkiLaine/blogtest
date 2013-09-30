@@ -201,7 +201,7 @@ def add_entry():
 		title = form.title.data
 		body = form.body.data
 		body = body.replace("\n", "<br/>")	
-		comma_sep = str(request.values['tags'])
+		comma_sep = unicode(request.values['tags'])
 		comma_sep = comma_sep.replace(" ", "")
 		comma_sep_to_list = comma_sep.split(',')
 		taglist = []
@@ -228,7 +228,7 @@ def edit_entry():
 		title = form.title.data
 		body = form.body.data
 		body = body.replace("\n", "<br/>")
-		comma_sep = str(request.values['tags'])
+		comma_sep = unicode(request.values['tags'])
 		comma_sep = comma_sep.replace(" ", "")
 		comma_sep_to_list = comma_sep.split(',')
 		taglist = []
