@@ -15,9 +15,9 @@ from string import replace, lower
 import re
 
 DEBUG = False
-SECRET_KEY = 'vfaw)iul6d2@0b85$zy-^kdbd3i-7=ww_vtf%k9'
-USERNAME = 'admin'
-PASSWORD = 'default'
+SECRET_KEY = #Generated secret key
+USERNAME = #username
+PASSWORD = #password
 
 app = Flask(__name__)
 
